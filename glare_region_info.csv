@@ -1,0 +1,8 @@
+﻿region,primary_degradation,glare_candidate_fraction,selected_pixels,FADE_patch_density_before,FADE_patch_density_after,auxiliary_processing
+1,dark,0.0,0,,,Negligible / none
+2,normal,0.13016459853296886,6619,0.781161904335022,0.6348423957824707,Selective DCP
+3,dark,0.0,0,,,Negligible / none
+4,bright,0.0,0,,,Negligible / none
+5,bright,0.5261198594823217,30103,1.2894690036773682,1.0737651586532593,Selective DCP
+6,dark,0.077814829438152,16358,1.641947627067566,1.5324561595916748,Selective DCP
+7,dark,0.0,0,,,Negligible / none

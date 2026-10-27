@@ -1,0 +1,9 @@
+{
+  "normalized_box": [
+    0.6626984126984127,
+    0.0873015873015873,
+    1.0,
+    0.6375661375661376
+  ],
+  "selection": "Largest connected confidence > 0.25 component; display only"
+}

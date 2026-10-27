@@ -1,0 +1,8 @@
+﻿region,degradation,parameter_names,fixed_parameters,pso_parameters,fixed_fitness,best_fitness,status,valid_high_pixels,pso_seconds,parameter_source
+1,dark,gamma;clip_limit,"[0.725, 2.0]","[0.929229570609613, 1.011263605178543]",0.18028628898129542,0.07314725106843223,optimized,4154,33.70803039998282,reoptimized_aesthetic_fitness
+2,normal,,[],[],,,identity,0,0,identity
+3,dark,gamma;clip_limit,"[0.725, 2.0]","[0.8510077710268626, 1.0008758607881778]",0.1168064896927187,0.06579499759565512,optimized,62,23.02110019995598,reoptimized_aesthetic_fitness
+4,bright,gamma,[1.75],[2.497990912717108],0.827121363454818,0.7185951931425972,optimized,35106,0,reused_unchanged_fitness
+5,bright,gamma,[1.75],[2.497990912717108],0.5211130604841232,0.352127067808161,optimized,18981,0,reused_unchanged_fitness
+6,dark,gamma;clip_limit,"[0.725, 2.0]","[0.8782899301999649, 1.016690366349132]",0.1394910516028593,0.07318143718099462,optimized,6316,21.663584400026593,reoptimized_aesthetic_fitness
+7,dark,gamma;clip_limit,"[0.725, 2.0]","[0.810447258874274, 1.007418822709984]",0.13930402378554207,0.06812099405907704,optimized,890,21.260562399984337,reoptimized_aesthetic_fitness

@@ -1,0 +1,26 @@
+{
+  "candidate_area_fraction": 0.06965440497186529,
+  "mean_confidence": 0.0458759143948555,
+  "FADE_global_before": 0.4386909171956009,
+  "FADE_global_after": 0.4349861613164573,
+  "FADE_patch_density_before": 1.3347094058990479,
+  "FADE_patch_density_after": 1.16038978099823,
+  "local_rms_contrast_before": 0.14390785992145538,
+  "local_rms_contrast_after": 0.16495151817798615,
+  "visible_gradient_ratio": 0.875313937664032,
+  "valid_gradient_pixels": 22089,
+  "near_black_before": 0.0,
+  "near_black_after": 0.0,
+  "processing_seconds": 6.289765099994838,
+  "airlight": [
+    1.0,
+    1.0,
+    1.0
+  ],
+  "input": "enhanced_before_glare.png",
+  "additional_DINO_forwards": 0,
+  "additional_PSO_runs": 0,
+  "metric": "Python adaptation of original LIVE FADE (12 features and released MVG parameters)",
+  "interpretation": "Fog perception proxy; not a physical glare measurement",
+  "algorithm": "Selective dark-channel dehazing followed by reference-based sky tone balancing"
+}

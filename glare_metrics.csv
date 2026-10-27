@@ -1,0 +1,2 @@
+﻿candidate_area_fraction,mean_confidence,FADE_global_before,FADE_global_after,FADE_patch_density_before,FADE_patch_density_after,local_rms_contrast_before,local_rms_contrast_after,visible_gradient_ratio,valid_gradient_pixels,near_black_before,near_black_after,processing_seconds
+0.06965440497186529,0.0458759143948555,0.4386909171956009,0.4349861613164573,1.3347094058990479,1.16038978099823,0.14390785992145538,0.16495151817798615,0.875313937664032,22089,0.0,0.0,6.289765099994838

@@ -1,0 +1,55 @@
+{
+  "status": "applied",
+  "reference_component": 7,
+  "target_luminance": 0.8122196507453918,
+  "reference_mean": 0.8813056349754333,
+  "reference_quantile": 0.8422196507453918,
+  "components": [
+    {
+      "component": 7,
+      "area": 10110,
+      "mean_before": 0.8813056349754333,
+      "median_before": 0.8703961372375488,
+      "saturated_fraction": 9.891196834817012e-05,
+      "centroid_x": 0.23111556607476488,
+      "centroid_y": 0.15777466388247793,
+      "requested_gain": 1.0,
+      "gamma": 1.0,
+      "target_luminance": 0.8813056349754333,
+      "mean_after": 0.8813056349754333,
+      "mean_error_before": 0.0,
+      "mean_error_after": 0.0
+    },
+    {
+      "component": 28,
+      "area": 12481,
+      "mean_before": 0.9913061857223511,
+      "median_before": 1.0,
+      "saturated_fraction": 0.8666773495713485,
+      "centroid_x": 0.9440679992318483,
+      "centroid_y": 0.3683474012774549,
+      "requested_gain": 0.822689250498741,
+      "gamma": 1.5,
+      "target_luminance": 0.8122196507453918,
+      "mean_after": 0.8138466477394104,
+      "mean_error_before": 0.17908653497695926,
+      "mean_error_after": 0.0016269969940185813
+    },
+    {
+      "component": 38,
+      "area": 6378,
+      "mean_before": 0.9866606593132019,
+      "median_before": 0.9976981282234192,
+      "saturated_fraction": 0.7910003135779241,
+      "centroid_x": 0.8326024292334264,
+      "centroid_y": 0.4602654047229149,
+      "requested_gain": 0.8283981164237827,
+      "gamma": 1.5,
+      "target_luminance": 0.8122196507453918,
+      "mean_after": 0.812839925289154,
+      "mean_error_before": 0.17444100856781009,
+      "mean_error_after": 0.0006202745437622337
+    }
+  ],
+  "interpretation": "Darker highlight rendering with increased slope in retained unsaturated variations; clipped pixels remain flat"
+}

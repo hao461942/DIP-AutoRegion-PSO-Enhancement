@@ -1,0 +1,57 @@
+{
+  "python": "3.12.13 | packaged by Anaconda, Inc. | (main, Jul  9 2026, 14:26:47) [MSC v.1942 64 bit (AMD64)]",
+  "torch": "2.5.1+cu118",
+  "cuda": "11.8",
+  "gpu": "NVIDIA GeForce RTX 3060 Laptop GPU",
+  "gpu_memory_gb": 5.99951171875,
+  "model": "facebook/dinov2-small",
+  "model_forward_count": 0,
+  "reused_segmentation": true,
+  "model_revision": "ed25f3a31f01632728cabb09d1542f84ab7b0056",
+  "original_size": [
+    5120,
+    3840
+  ],
+  "analysis_size": [
+    1008,
+    756
+  ],
+  "padded_size": [
+    1008,
+    756
+  ],
+  "feature_seconds": 4.968101300008129,
+  "segmentation_seconds": 7.3627160000032745,
+  "pso_seconds": 99.91833060001954,
+  "metric_resolution": [
+    1008,
+    756
+  ],
+  "timing_excludes": "file output, plots and metrics; model cache is warm",
+  "dependencies": {
+    "torch": "2.5.1+cu118",
+    "transformers": "4.46.3",
+    "numpy": "1.26.4",
+    "opencv-python-headless": "4.10.0.84",
+    "scikit-image": "0.24.0",
+    "scikit-learn": "1.5.2",
+    "scipy": "1.14.1",
+    "pyswarms": "1.3.0",
+    "matplotlib": "3.9.2"
+  },
+  "final_pipeline": "Regional PSO + smooth gain fusion + selective DCP + reference sky tone matching",
+  "glare_processing_seconds": 6.289765099994838,
+  "glare_stage_reused_enhancement": true,
+  "reoptimized_regions": [
+    1,
+    3,
+    6,
+    7
+  ],
+  "reused_parameter_regions": [
+    4,
+    5
+  ],
+  "aesthetic_render_and_glare_seconds": 24.714520899986383,
+  "fitness": "Adaptive exposure targets with bounded lift and local contrast preservation"
+}
