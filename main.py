@@ -27,8 +27,9 @@ import matplotlib.pyplot as plt
 from PIL import Image
 import glare
 
-CFG = dict(seed=42, max_side=1008, clusters=5, superpixels=650,
-           min_region_fraction=0.02, max_regions=7,
+CFG = dict(seed=42, max_side=1008, clusters=5, superpixels=1400,
+           slic_compactness=8.0, slic_sigma=0.6,
+           min_region_fraction=0.005, max_regions=16, split_region_fraction=0.25,
            dark_mean=0.32, dark_median=0.30,
            bright_mean=0.70, bright_fraction=0.30, bright_pixel=0.85,
            saturated=0.995, texture_std=0.025, edge_threshold=0.04,
@@ -100,9 +101,15 @@ def extract_and_segment(rgb):
     del model, x
     torch.cuda.empty_cache()
     feature_seconds = time.perf_counter() - t
+    labels = segment_from_tokens(rgb, tokens)
+    return labels, feature_seconds, time.perf_counter()-t
+
+def segment_from_tokens(rgb, tokens):
+    """Patch grid -> PCA/interpolation -> superpixel pooling -> clustering/merging."""
+    h,w = rgb.shape[:2]
     lowdim = PCA(n_components=16, random_state=CFG['seed']).fit_transform(tokens)
     feat = cv2.resize(lowdim.reshape(h//14, w//14, 16), (w, h), interpolation=cv2.INTER_LINEAR)
-    sp = slic(rgb, n_segments=CFG['superpixels'], compactness=12, sigma=1,
+    sp = slic(rgb, n_segments=CFG['superpixels'], compactness=CFG['slic_compactness'], sigma=CFG['slic_sigma'],
               start_label=0, enforce_connectivity=True, channel_axis=-1)
     count = int(sp.max()+1)
     sizes = np.bincount(sp.ravel(), minlength=count)
@@ -124,6 +131,24 @@ def extract_and_segment(rgb):
         labels[cc>0] = cc[cc>0] + next_id - 1
         next_id += n
     pixel_z = z[sp]
+    # Separate oversized connected regions before small-island merging. A semantic
+    # cluster may otherwise connect different structures through a narrow bridge.
+    yy,xx = np.indices((h,w),dtype=np.float32)
+    sp_xy = np.stack([np.bincount(sp.ravel(),weights=a.ravel(),minlength=count)/sizes
+                      for a in (xx/w,yy/h)],axis=1)
+    for region in np.unique(labels):
+        mask = labels == region
+        if mask.sum() <= h*w*CFG['split_region_fraction']:
+            continue
+        selected = np.flatnonzero(np.bincount(sp[mask],minlength=count)>sizes*.5)
+        split_z = np.concatenate([z[selected],.25*sp_xy[selected]],axis=1)
+        split = KMeans(n_clusters=2,random_state=CFG['seed'],n_init=10).fit(split_z,sample_weight=sizes[selected])
+        assignment = np.zeros(count,np.int32)
+        assignment[selected] = split.labels_
+        for child in (0,1):
+            cc,n = ndi.label(mask & (assignment[sp]==child))
+            labels[cc>0] = cc[cc>0]+next_id-1
+            next_id += n
     while True:
         ids, areas = np.unique(labels, return_counts=True)
         i = int(np.argmin(areas))
@@ -140,7 +165,7 @@ def extract_and_segment(rgb):
     labels = -labels
     np.save(OUT/'labels_work.npy', labels)
     np.save(OUT/'superpixels.npy', sp)
-    return labels, feature_seconds, time.perf_counter()-t
+    return labels
 
 def valid_patches(y, mask):
     """Fixed original-image patches; no zero-filled region background is scored."""
@@ -398,7 +423,7 @@ def boundary_metrics(rgb, original, labels):
 
 def plot_results(images, labels, regions, histories):
     plt.rcParams.update({'font.family':'Times New Roman', 'font.size':12})
-    colors = plt.get_cmap('tab10')((labels-1)%10)[:,:,:3]
+    colors = plt.get_cmap('tab20')((labels-1)%20)[:,:,:3]
     fig, ax = plt.subplots(figsize=(10,7.5))
     ax.imshow(colors)
     for reg in regions:
@@ -543,6 +568,7 @@ def main():
     parser.add_argument('--check',action='store_true',help='Required runtime check, no model forward or experiment')
     parser.add_argument('--report-only',action='store_true',help='Regenerate figures/tables from saved outputs, no model/PSO')
     parser.add_argument('--reuse-segmentation',action='store_true',help='Reuse saved DINOv2/SLIC partition; rerun only enhancement')
+    parser.add_argument('--reuse-features',action='store_true',help='Reuse cached patch tokens; rebuild partition and enhancement')
     parser.add_argument('--glare-only',action='store_true',help='Apply only the new glare branch to saved enhanced_before_glare.png')
     args = parser.parse_args()
     OUT.mkdir(exist_ok=True)
@@ -599,6 +625,11 @@ def main():
         labels=np.load(OUT/'labels_work.npy')
         previous=json.loads((OUT/'runtime.json').read_text())
         feature_s,preprocess_s=previous['feature_seconds'],previous['segmentation_seconds']
+    elif args.reuse_features:
+        t=time.perf_counter()
+        labels=segment_from_tokens(work,np.load(OUT/'patch_features.npy'))
+        preprocess_s=time.perf_counter()-t
+        feature_s=0.0
     else:
         labels,feature_s,preprocess_s = extract_and_segment(work)
     # For this input no padding is needed. Store general padding metadata explicitly.
@@ -654,7 +685,8 @@ def main():
     import importlib.metadata as md
     runtime=dict(python=__import__('sys').version,torch=torch.__version__,cuda=torch.version.cuda,
                  gpu=torch.cuda.get_device_name(),gpu_memory_gb=torch.cuda.get_device_properties(0).total_memory/2**30,
-                 model='facebook/dinov2-small',model_forward_count=0 if args.reuse_segmentation else 1,
+                 model='facebook/dinov2-small',model_forward_count=0 if args.reuse_segmentation or args.reuse_features else 1,
+                 reused_features=args.reuse_features,
                  reused_segmentation=args.reuse_segmentation,
                  model_revision=MODEL_REVISION,
                  original_size=[w,h],analysis_size=[nw,nh],padded_size=[nw+pw,nh+ph],

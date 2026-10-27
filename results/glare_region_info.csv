@@ -1,8 +1,17 @@
 ﻿region,primary_degradation,glare_candidate_fraction,selected_pixels,FADE_patch_density_before,FADE_patch_density_after,auxiliary_processing
-1,dark,0.0,0,,,Negligible / none
-2,normal,0.13016459853296886,6619,0.781161904335022,0.6348423957824707,Selective DCP
-3,dark,0.0,0,,,Negligible / none
-4,bright,0.0,0,,,Negligible / none
-5,bright,0.5261198594823217,30103,1.2894690036773682,1.0737651586532593,Selective DCP
-6,dark,0.077814829438152,16358,1.641947627067566,1.5324561595916748,Selective DCP
+1,bright,0.0,0,,,Negligible / none
+2,bright,0.5494826810616285,29316,1.3201065063476562,1.0878275632858276,Selective DCP
+3,normal,0.000345586496662362,19,0.5834245085716248,0.4574912190437317,Negligible / none
+4,dark,0.0,0,,,Negligible / none
+5,dark,0.0,0,,,Negligible / none
+6,normal,0.0,0,,,Negligible / none
 7,dark,0.0,0,,,Negligible / none
+8,dark,0.0,0,,,Negligible / none
+9,dark,0.0,0,,,Negligible / none
+10,normal,0.19156052088522024,5384,0.7702345848083496,0.6125314831733704,Selective DCP
+11,normal,0.0,0,,,Negligible / none
+12,dark,0.0,0,,,Negligible / none
+13,dark,0.0,0,,,Negligible / none
+14,normal,0.0,0,,,Negligible / none
+15,dark,0.15723178083979866,19273,1.5617135763168335,1.428303837776184,Selective DCP
+16,dark,0.0,0,,,Negligible / none

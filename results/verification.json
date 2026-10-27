@@ -1,33 +1,15 @@
 {
-  "segmentation_identical_to_v1": true,
-  "native_dimensions": [
+  "all_connected": true,
+  "regions": 16,
+  "actual_superpixels": 1172,
+  "minimum_area_fraction": 0.015399292433022592,
+  "final_dimensions": [
     5120,
     3840
   ],
-  "final_equals_D": true,
-  "optimized_regions": 6,
-  "iterations_each": 15,
-  "model_additional_forwards": 0,
-  "parameters_and_fitness": "valid",
-  "figure_font": "Times New Roman",
-  "final_stage": "Selective DCP plus automatic reference sky tone matching",
-  "additional_DINO_forwards_for_glare": 0,
-  "additional_PSO_runs_for_glare": 0,
-  "FADE_parameter_source": "Original LIVE release; Python adaptation, not MATLAB bit-exact validated",
-  "glare_detection": "No scene coordinates; same rules applied to every pixel",
-  "sky_reference_mean": 0.8813056349754333,
-  "matched_component_mean_error_max": 0.0016269969940185813,
-  "fitness": "Adaptive exposure with contrast and excessive-lift penalties",
-  "reoptimized_regions": [
-    1,
-    3,
-    6,
-    7
-  ],
-  "reused_parameter_regions": [
-    4,
-    5
-  ],
-  "sky_target_luminance": 0.8122196507453918,
-  "sky_detail_gamma": 1.5
+  "additional_model_forwards": 0,
+  "optimized_regions": 11,
+  "report_links_valid": true,
+  "configuration": "refined_16_regions",
+  "output_note": "All enhancement parameters recomputed for the new partition"
 }

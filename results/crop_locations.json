@@ -1,14 +1,14 @@
 [
   {
-    "region": 6,
-    "x": 546,
-    "y": 0,
+    "region": 9,
+    "x": 183,
+    "y": 305,
     "width": 220,
     "height": 220,
     "coordinate_system": "analysis image"
   },
   {
-    "region": 5,
+    "region": 2,
     "x": 788,
     "y": 161,
     "width": 220,
@@ -16,8 +16,8 @@
     "coordinate_system": "analysis image"
   },
   {
-    "region": 7,
-    "x": 267,
+    "region": 16,
+    "x": 301,
     "y": 536,
     "width": 220,
     "height": 220,
